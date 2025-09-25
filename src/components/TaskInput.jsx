@@ -1,3 +1,4 @@
+import { Plus } from "lucide-react";
 import { useState } from "react";
 
 const TaskInput = ({ addTask }) => {
@@ -22,12 +23,12 @@ const TaskInput = ({ addTask }) => {
   };
 
   return (
-    <div className="flex items-start">
-      <div>
-        <form className="flex flex-col gap-1" onSubmit={handleSubmit}>
+    <div className="flex justify-between">
+      <form onSubmit={handleSubmit}>
+        <div className="flex flex-col gap-1">
           <input
             placeholder="Enter Task..."
-            className="outline-none"
+            className="outline-none w-full"
             value={name}
             onChange={handleNameChange}
           />
@@ -36,10 +37,18 @@ const TaskInput = ({ addTask }) => {
             value={description}
             onChange={handleDescriptionChange}
             placeholder="Enter Description..."
-            className="outline-none text-xs resize-none"
+            className="outline-none text-xs resize-none w-full"
           />
-        </form>
-      </div>
+        </div>
+      </form>
+      <button
+        onClick={handleSubmit}
+        type="submit"
+        className="bg-amber-200 w-fit h-fit p-2 gap-1 rounded flex "
+      >
+        <Plus />
+        Add Task
+      </button>
     </div>
   );
 };
