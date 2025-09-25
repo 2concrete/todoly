@@ -1,10 +1,14 @@
 import Task from "./Task";
 
-const TaskList = ({ tasks }) => {
+const TaskList = ({ tasks, toggleCompleted, deleteTask }) => {
   return (
-    <div className="w-full flex flex-col-reverse absolute mt-15">
-      {tasks.map((task) => (
+    <div className="flex flex-col-reverse">
+      {tasks.map((task, index) => (
         <Task
+          toggleCompleted={toggleCompleted}
+          deleteTask={deleteTask}
+          key={index}
+          date={task.date}
           name={task.name}
           description={task.description}
           completed={task.completed}
