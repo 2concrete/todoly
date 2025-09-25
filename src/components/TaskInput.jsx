@@ -44,7 +44,7 @@ const TaskInput = ({ addTask }) => {
       <button
         onClick={handleSubmit}
         type="submit"
-        className="bg-amber-200 w-fit h-fit p-2 gap-1 rounded flex "
+        className="bg-amber-200 w-fit h-fit p-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all"
       >
         <Plus />
         Add Task
