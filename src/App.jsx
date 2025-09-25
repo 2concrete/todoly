@@ -3,7 +3,18 @@ import TaskInput from "./components/TaskInput";
 import TaskList from "./components/TaskList";
 
 const App = () => {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(() => {
+    const saved = localStorage.getItem("tasks");
+    if (saved) {
+      return JSON.parse(saved);
+    } else {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   const addTask = (name, description) => {
     const newTask = {
