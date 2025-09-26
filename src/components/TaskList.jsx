@@ -2,7 +2,7 @@ import Task from "./Task";
 
 const TaskList = ({ tasks, toggleCompleted, deleteTask }) => {
   return (
-    <div className="flex flex-col-reverse">
+    <div className="flex flex-col-reverse mt-6 gap-1">
       {tasks.map((task, index) => (
         <Task
           toggleCompleted={toggleCompleted}

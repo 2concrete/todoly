@@ -41,24 +41,29 @@ const Task = ({
           )}
         </div>
       </div>
-      <button className="self-start" onClick={() => setOptionsHovered(true)}>
-        <Ellipsis className="stroke-1 text-neutral-400" />
-      </button>
-      {optionsHovered && (
-        <div
-          className="absolute -right-25 border-neutral-400 bg-white border rounded"
-          onMouseEnter={() => setOptionsHovered(true)}
-          onMouseLeave={() => setOptionsHovered(false)}
+      <div>
+        <button
+          className="self-start"
+          onClick={() => setOptionsHovered(!optionsHovered)}
         >
-          <button
-            className="flex items-center gap-2 p-2 cursor-pointer"
-            onClick={() => deleteTask(date)}
+          <Ellipsis className="stroke-1 text-neutral-400" />
+        </button>
+        {optionsHovered && (
+          <div
+            className="absolute -right-25 top-0 border-neutral-400 bg-white border rounded"
+            onMouseEnter={() => setOptionsHovered(true)}
+            onMouseLeave={() => setOptionsHovered(false)}
           >
-            <Trash className="text-red-400 size-5 stroke-1" />
-            Delete
-          </button>
-        </div>
-      )}
+            <button
+              className="flex items-center gap-2 p-2 cursor-pointer"
+              onClick={() => deleteTask(date)}
+            >
+              <Trash className="text-red-400 size-5 stroke-1" />
+              Delete
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
