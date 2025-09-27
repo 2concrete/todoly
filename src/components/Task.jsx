@@ -40,7 +40,7 @@ const Task = ({
           <p className="text-sm flex gap-1">
             {name}
             {priority && (
-              <div className="flex items-center text-neutral-700 text-xs">
+              <div className="flex items-center gap-0.5 text-neutral-700 text-xs">
                 <Flag size={13} />
                 {priority}
               </div>
@@ -51,11 +51,21 @@ const Task = ({
           )}
         </div>
       </div>
-      <div>
-        <button
-          className="self-start"
-          onClick={() => setOptionsHovered(!optionsHovered)}
-        >
+      <div className="flex gap-2 items-center">
+        {deadline && (
+          <div
+            className={`${
+              deadline === new Date().getDate()
+                ? "border-green-500"
+                : "border-neutral-400"
+            } border text-sm w-fit h-fit p-1 px-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all`}
+          >
+            {deadline === new Date().getDate()
+              ? "Today"
+              : new Date().getDate() + "/" + new Date().getMonth()}
+          </div>
+        )}
+        <button className="" onClick={() => setOptionsHovered(!optionsHovered)}>
           <Ellipsis className="stroke-1 text-neutral-400" />
         </button>
         {optionsHovered && (

@@ -24,7 +24,7 @@ const TaskInput = ({ addTask }) => {
       addTask(name, description, priority, date);
       setName("");
       setDescription(null);
-      setDescription("");
+      setDate(null);
       setPriority(null);
     }
   };
