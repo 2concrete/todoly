@@ -1,7 +1,9 @@
 import { Calendar, Flag, Plus } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const TaskInput = ({ addTask }) => {
+  const newDate = new Date();
+
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState(null);
@@ -10,12 +12,20 @@ const TaskInput = ({ addTask }) => {
   const [showPriorityPopout, setShowPriorityPopout] = useState(false);
   const [showDatePopout, setShowDatePopout] = useState(false);
 
+  useEffect(() => {
+    console.log(date);
+  }, [date]);
+
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
 
   const handleDescriptionChange = (e) => {
     setDescription(e.target.value);
+  };
+
+  const handleDateChange = (e) => {
+    setDate(e.target.value);
   };
 
   const handleSubmit = (e) => {
@@ -70,18 +80,29 @@ const TaskInput = ({ addTask }) => {
             Date
           </button>
           {showDatePopout && (
-            <button
-              onClick={() =>
-                date ? setDate(null) : setDate(new Date().getDate())
-              }
-              className={`${
-                date === new Date().getDate()
-                  ? "border-amber-400 bg-amber-100"
-                  : "border-neutral-400"
-              } border text-sm  w-fit h-fit p-1 px-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all`}
-            >
-              Today
-            </button>
+            <div className="flex gap-1">
+              <button
+                onClick={() =>
+                  date
+                    ? setDate(null)
+                    : setDate(newDate.toISOString().slice(0, 10))
+                }
+                className={`${
+                  date === newDate.toISOString().slice(0, 10)
+                    ? "border-amber-400 bg-amber-100"
+                    : "border-neutral-400"
+                } border text-sm  w-fit h-fit p-1 px-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all`}
+              >
+                Today
+              </button>
+              <input
+                value={date}
+                type="text"
+                placeholder="dd-mm-yyyy"
+                onChange={handleDateChange}
+                className="border text-sm  w-26 outline-none h-fit p-1 px-2 gap-1 rounded flex hover:opacity-70 transition-all border-neutral-400"
+              />
+            </div>
           )}
         </div>
         <button

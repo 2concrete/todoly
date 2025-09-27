@@ -70,15 +70,15 @@ const Task = ({
         </button>
         {optionsHovered && (
           <div
-            className="absolute -right-25 top-0 border-neutral-400 bg-white border rounded"
+            className="absolute -right-18 border-neutral-400 bg-white border rounded"
             onMouseEnter={() => setOptionsHovered(true)}
             onMouseLeave={() => setOptionsHovered(false)}
           >
             <button
-              className="flex items-center gap-2 p-2 cursor-pointer"
+              className="flex items-center gap-1 p-1 text-xs cursor-pointer"
               onClick={() => deleteTask(date)}
             >
-              <Trash className="text-red-400 size-5 stroke-1" />
+              <Trash className="text-red-400 size-4 stroke-1" />
               Delete
             </button>
           </div>
