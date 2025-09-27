@@ -5,7 +5,7 @@ const TaskInput = ({ addTask }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState(null);
-  const [date, setDate] = useState(null);
+  const [date, setDate] = useState("");
 
   const [showPriorityPopout, setShowPriorityPopout] = useState(false);
   const [showDatePopout, setShowDatePopout] = useState(false);
@@ -90,7 +90,7 @@ const TaskInput = ({ addTask }) => {
             <div className="flex gap-1">
               <button
                 onClick={() =>
-                  date === today() ? setDate(null) : setDate(today())
+                  date === today() ? setDate("") : setDate(today())
                 }
                 className={`${
                   date === today()
