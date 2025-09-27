@@ -58,7 +58,7 @@ const Task = ({
               deadline === new Date().getDate()
                 ? "border-green-500"
                 : "border-neutral-400"
-            } border text-sm w-fit h-fit p-1 px-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all`}
+            } border text-xs w-fit h-fit p-1 px-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all`}
           >
             {deadline === new Date().getDate()
               ? "Today"

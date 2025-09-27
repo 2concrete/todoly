@@ -36,7 +36,7 @@ const TaskInput = ({ addTask }) => {
           <div className="flex flex-col gap-1">
             <input
               placeholder="Enter Task..."
-              className="outline-none w-full"
+              className="outline-none"
               value={name}
               onChange={handleNameChange}
             />
@@ -45,7 +45,7 @@ const TaskInput = ({ addTask }) => {
               value={description}
               onChange={handleDescriptionChange}
               placeholder="Enter Description..."
-              className="outline-none text-xs resize-none w-full"
+              className="outline-none text-xs resize-none"
             />
           </div>
         </form>
