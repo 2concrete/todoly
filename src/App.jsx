@@ -40,10 +40,6 @@ const App = () => {
     setTasks(tasks.filter((task) => task.date !== date));
   };
 
-  useEffect(() => {
-    console.log(tasks);
-  }, [tasks]);
-
   return (
     <div className="flex flex-col mt-10 w-1/2 mx-auto font-[Rubik]">
       <TaskInput addTask={addTask} />

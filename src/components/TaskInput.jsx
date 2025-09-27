@@ -1,9 +1,7 @@
 import { Calendar, Flag, Plus } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const TaskInput = ({ addTask }) => {
-  const newDate = new Date();
-
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState(null);
@@ -11,10 +9,6 @@ const TaskInput = ({ addTask }) => {
 
   const [showPriorityPopout, setShowPriorityPopout] = useState(false);
   const [showDatePopout, setShowDatePopout] = useState(false);
-
-  useEffect(() => {
-    console.log(date);
-  }, [date]);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -28,14 +22,27 @@ const TaskInput = ({ addTask }) => {
     setDate(e.target.value);
   };
 
+  const today = () => {
+    const newDate = new Date();
+    const dateString =
+      newDate.getDate() +
+      "-" +
+      newDate.getMonth() +
+      "-" +
+      newDate.getFullYear();
+    return dateString;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (name.trim()) {
       addTask(name, description, priority, date);
       setName("");
-      setDescription(null);
+      setDescription("");
       setDate(null);
       setPriority(null);
+      setShowDatePopout(false);
+      setShowPriorityPopout(false);
     }
   };
 
@@ -83,15 +90,13 @@ const TaskInput = ({ addTask }) => {
             <div className="flex gap-1">
               <button
                 onClick={() =>
-                  date
-                    ? setDate(null)
-                    : setDate(newDate.toISOString().slice(0, 10))
+                  date === today() ? setDate(null) : setDate(today())
                 }
                 className={`${
-                  date === newDate.toISOString().slice(0, 10)
+                  date === today()
                     ? "border-amber-400 bg-amber-100"
                     : "border-neutral-400"
-                } border text-sm  w-fit h-fit p-1 px-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all`}
+                } border text-sm w-fit h-fit p-1 px-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all`}
               >
                 Today
               </button>
@@ -100,7 +105,7 @@ const TaskInput = ({ addTask }) => {
                 type="text"
                 placeholder="dd-mm-yyyy"
                 onChange={handleDateChange}
-                className="border text-sm  w-26 outline-none h-fit p-1 px-2 gap-1 rounded flex hover:opacity-70 transition-all border-neutral-400"
+                className="border text-sm  w-24 outline-none h-fit p-1 px-2 gap-1 rounded flex hover:opacity-70 transition-all border-neutral-400"
               />
             </div>
           )}
