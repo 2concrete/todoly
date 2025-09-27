@@ -12,6 +12,8 @@ const TaskList = ({ tasks, toggleCompleted, deleteTask }) => {
           name={task.name}
           description={task.description}
           completed={task.completed}
+          priority={task.priority}
+          deadline={task.deadline}
         />
       ))}
     </div>

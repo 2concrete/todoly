@@ -5,8 +5,10 @@ const TaskInput = ({ addTask }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState(null);
+  const [date, setDate] = useState(null);
 
   const [showPriorityPopout, setShowPriorityPopout] = useState(false);
+  const [showDatePopout, setShowDatePopout] = useState(false);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -19,9 +21,11 @@ const TaskInput = ({ addTask }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (name.trim()) {
-      addTask(name, description);
+      addTask(name, description, priority, date);
       setName("");
+      setDescription(null);
       setDescription("");
+      setPriority(null);
     }
   };
 
@@ -57,10 +61,29 @@ const TaskInput = ({ addTask }) => {
         </div>
       </div>
       <div className="flex gap-1">
-        <button className="border mr-1 text-sm border-neutral-400 w-fit h-fit p-1 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all">
-          <Calendar className="size-5 stroke-1" />
-          Date
-        </button>
+        <div className="flex gap-1 mr-1">
+          <button
+            onClick={() => setShowDatePopout(!showDatePopout)}
+            className="border text-sm border-neutral-400 w-fit h-fit p-1 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all"
+          >
+            <Calendar className="size-5 stroke-1" />
+            Date
+          </button>
+          {showDatePopout && (
+            <button
+              onClick={() =>
+                date ? setDate(null) : setDate(new Date().getDate())
+              }
+              className={`${
+                date === new Date().getDate()
+                  ? "border-amber-400 bg-amber-100"
+                  : "border-neutral-400"
+              } border text-sm  w-fit h-fit p-1 px-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all`}
+            >
+              Today
+            </button>
+          )}
+        </div>
         <button
           onClick={() => setShowPriorityPopout(!showPriorityPopout)}
           className="border text-sm border-neutral-400 w-fit h-fit p-1 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all"
@@ -70,13 +93,40 @@ const TaskInput = ({ addTask }) => {
         </button>
         {showPriorityPopout && (
           <div className="flex gap-1">
-            <button className="border text-sm border-neutral-400 w-fit h-fit p-1 px-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all">
+            <button
+              onClick={() =>
+                priority === 1 ? setPriority(null) : setPriority(1)
+              }
+              className={`${
+                priority === 1
+                  ? "border-amber-400 bg-amber-100"
+                  : "border-neutral-400"
+              } border text-sm  w-fit h-fit p-1 px-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all`}
+            >
               1
             </button>
-            <button className="border text-sm border-neutral-400 w-fit h-fit p-1 px-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all">
+            <button
+              onClick={() =>
+                priority === 2 ? setPriority(null) : setPriority(2)
+              }
+              className={`${
+                priority === 2
+                  ? "border-amber-400 bg-amber-100"
+                  : "border-neutral-400"
+              } border text-sm  w-fit h-fit p-1 px-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all`}
+            >
               2
             </button>
-            <button className="border text-sm border-neutral-400 w-fit h-fit p-1 px-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all">
+            <button
+              onClick={() =>
+                priority === 3 ? setPriority(null) : setPriority(3)
+              }
+              className={`${
+                priority === 3
+                  ? "border-amber-400 bg-amber-100"
+                  : "border-neutral-400"
+              } border text-sm  w-fit h-fit p-1 px-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all`}
+            >
               3
             </button>
           </div>

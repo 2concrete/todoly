@@ -1,4 +1,4 @@
-import { Circle, CircleCheck, Ellipsis, Trash, X } from "lucide-react";
+import { Circle, CircleCheck, Ellipsis, Flag, Trash, X } from "lucide-react";
 import { useState } from "react";
 
 const Task = ({
@@ -8,6 +8,8 @@ const Task = ({
   toggleCompleted,
   date,
   deleteTask,
+  priority,
+  deadline,
 }) => {
   const [circleHovered, setCircleHovered] = useState(false);
   const [optionsHovered, setOptionsHovered] = useState(false);
@@ -35,7 +37,15 @@ const Task = ({
           )}
         </button>
         <div className="flex flex-col">
-          <p className="text-sm">{name}</p>
+          <p className="text-sm flex gap-1">
+            {name}
+            {priority && (
+              <div className="flex items-center text-neutral-700 text-xs">
+                <Flag size={13} />
+                {priority}
+              </div>
+            )}
+          </p>
           {description && (
             <p className="text-xs text-neutral-500">{description}</p>
           )}
