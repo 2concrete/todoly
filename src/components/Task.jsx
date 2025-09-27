@@ -13,6 +13,17 @@ const Task = ({
 }) => {
   const [circleHovered, setCircleHovered] = useState(false);
   const [optionsHovered, setOptionsHovered] = useState(false);
+
+  const today = () => {
+    const newDate = new Date();
+    const dateString =
+      newDate.getDate() +
+      "-" +
+      newDate.getMonth() +
+      "-" +
+      newDate.getFullYear();
+    return dateString;
+  };
   return (
     <div className="flex justify-between relative">
       <div className="flex gap-2">
@@ -37,15 +48,16 @@ const Task = ({
           )}
         </button>
         <div className="flex flex-col">
-          <p className="text-sm flex gap-1">
-            {name}
+          <div className="flex gap-2">
+            <p className="text-sm flex gap-1">{name}</p>
             {priority && (
               <div className="flex items-center gap-0.5 text-neutral-700 text-xs">
                 <Flag size={13} />
                 {priority}
               </div>
             )}
-          </p>
+          </div>
+
           {description && (
             <p className="text-xs text-neutral-500">{description}</p>
           )}
@@ -55,14 +67,10 @@ const Task = ({
         {deadline && (
           <div
             className={`${
-              deadline === new Date().getDate()
-                ? "border-green-500"
-                : "border-neutral-400"
-            } border text-xs w-fit h-fit p-1 px-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all`}
+              deadline === today() ? "border-green-500" : "border-neutral-400"
+            } border text-xs w-fit h-fit p-1 px-2 gap-1 rounded flex hover:opacity-70 transition-all`}
           >
-            {deadline === new Date().getDate()
-              ? "Today"
-              : new Date().getDate() + "/" + new Date().getMonth()}
+            {deadline === today() ? "Today" : deadline}
           </div>
         )}
         <button className="" onClick={() => setOptionsHovered(!optionsHovered)}>
@@ -70,15 +78,15 @@ const Task = ({
         </button>
         {optionsHovered && (
           <div
-            className="absolute -right-25 top-0 border-neutral-400 bg-white border rounded"
+            className="absolute -right-18 border-neutral-400 bg-white border rounded"
             onMouseEnter={() => setOptionsHovered(true)}
             onMouseLeave={() => setOptionsHovered(false)}
           >
             <button
-              className="flex items-center gap-2 p-2 cursor-pointer"
+              className="flex items-center gap-1 p-1 text-xs cursor-pointer"
               onClick={() => deleteTask(date)}
             >
-              <Trash className="text-red-400 size-5 stroke-1" />
+              <Trash className="text-red-400 size-4 stroke-1" />
               Delete
             </button>
           </div>

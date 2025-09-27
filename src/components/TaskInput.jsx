@@ -18,14 +18,31 @@ const TaskInput = ({ addTask }) => {
     setDescription(e.target.value);
   };
 
+  const handleDateChange = (e) => {
+    setDate(e.target.value);
+  };
+
+  const today = () => {
+    const newDate = new Date();
+    const dateString =
+      newDate.getDate() +
+      "-" +
+      newDate.getMonth() +
+      "-" +
+      newDate.getFullYear();
+    return dateString;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (name.trim()) {
       addTask(name, description, priority, date);
       setName("");
-      setDescription(null);
+      setDescription("");
       setDate(null);
       setPriority(null);
+      setShowDatePopout(false);
+      setShowPriorityPopout(false);
     }
   };
 
@@ -70,18 +87,27 @@ const TaskInput = ({ addTask }) => {
             Date
           </button>
           {showDatePopout && (
-            <button
-              onClick={() =>
-                date ? setDate(null) : setDate(new Date().getDate())
-              }
-              className={`${
-                date === new Date().getDate()
-                  ? "border-amber-400 bg-amber-100"
-                  : "border-neutral-400"
-              } border text-sm  w-fit h-fit p-1 px-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all`}
-            >
-              Today
-            </button>
+            <div className="flex gap-1">
+              <button
+                onClick={() =>
+                  date === today() ? setDate(null) : setDate(today())
+                }
+                className={`${
+                  date === today()
+                    ? "border-amber-400 bg-amber-100"
+                    : "border-neutral-400"
+                } border text-sm w-fit h-fit p-1 px-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all`}
+              >
+                Today
+              </button>
+              <input
+                value={date}
+                type="text"
+                placeholder="dd-mm-yyyy"
+                onChange={handleDateChange}
+                className="border text-sm  w-24 outline-none h-fit p-1 px-2 gap-1 rounded flex hover:opacity-70 transition-all border-neutral-400"
+              />
+            </div>
           )}
         </div>
         <button
