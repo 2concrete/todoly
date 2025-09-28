@@ -40,11 +40,22 @@ const App = () => {
     setTasks(tasks.filter((task) => task.date !== date));
   };
 
+  const editTask = (date, name, description) => {
+    setTasks(
+      tasks.map((task) =>
+        task.date === date
+          ? { ...task, name: name, description: description }
+          : task
+      )
+    );
+  };
+
   return (
     <div className="flex flex-col mt-10 lg:w-1/2 md:w-2/3 sm:w-11/12 mx-auto font-[Rubik]">
       <TaskInput addTask={addTask} />
       <TaskList
         tasks={tasks}
+        editTask={editTask}
         toggleCompleted={toggleCompleted}
         deleteTask={deleteTask}
       />
