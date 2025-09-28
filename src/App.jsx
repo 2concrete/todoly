@@ -51,7 +51,7 @@ const App = () => {
   };
 
   return (
-    <div className="flex flex-col mt-10 lg:w-1/2 md:w-2/3 sm:w-11/12 mx-auto font-[Rubik]">
+    <div className="flex flex-col mt-10 mx-auto font-[Rubik] lg:w-1/2 md:w-3/4 sm:w-4/5 w-11/12">
       <TaskInput addTask={addTask} />
       <TaskList
         tasks={tasks}
