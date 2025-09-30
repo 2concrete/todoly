@@ -28,6 +28,59 @@ const App = () => {
     }
   };
 
+  const sampleTasks = () => {
+    setTasks([
+      {
+        name: "Vacuum living room",
+        date: 1759216653365,
+        description: "Use special attachment",
+        completed: false,
+        priority: 2,
+        deadline: "5-9-2025",
+      },
+      {
+        name: "Walk the dog",
+        date: 1759216681797,
+        description: "Bring leash",
+        completed: false,
+        priority: 3,
+        deadline: "30-8-2025",
+      },
+      {
+        name: "Buy new decor",
+        date: 1759216774930,
+        description: "Posters and plants",
+        completed: false,
+        priority: null,
+        deadline: "4-9-2025",
+      },
+      {
+        name: "Fix invisible bug",
+        date: 1759216800328,
+        description: "in App.jsx",
+        completed: false,
+        priority: 3,
+        deadline: "30-8-2025",
+      },
+      {
+        name: "Update resume",
+        date: 1759216880361,
+        description: "New work experience",
+        completed: false,
+        priority: 2,
+        deadline: "30-8-2025",
+      },
+      {
+        name: "Book flights",
+        date: 1759216928676,
+        description: "New York",
+        completed: false,
+        priority: 1,
+        deadline: "06-09-2025",
+      },
+    ]);
+  };
+
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
@@ -77,6 +130,12 @@ const App = () => {
         toggleCompleted={toggleCompleted}
         deleteTask={deleteTask}
       />
+      <button
+        className="absolute bottom-0 m-1 text-sm left-0 border-1 border-neutral-400 rounded transition-all px-1 hover:opacity-70 cursor-pointer"
+        onClick={() => sampleTasks()}
+      >
+        dev
+      </button>
     </div>
   );
 };
