@@ -12,6 +12,22 @@ const App = () => {
     }
   });
 
+  const [sortMode, setSortMode] = useState("none");
+
+  const sortTasks = () => {
+    if (sortMode === "none") {
+      return tasks;
+    } else if (sortMode === "a-z") {
+      return [...tasks].sort((a, b) =>
+        b.name.toLowerCase().localeCompare(a.name.toLowerCase())
+      );
+    } else if (sortMode === "z-a") {
+      return [...tasks].sort((a, b) =>
+        a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+      );
+    }
+  };
+
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
@@ -52,8 +68,10 @@ const App = () => {
 
   return (
     <div className="flex flex-col mt-10 mx-auto font-[Rubik] lg:w-1/2 md:w-3/4 sm:w-4/5 w-11/12">
-      <TaskInput addTask={addTask} />
+      <TaskInput addTask={addTask} setSortMode={setSortMode} />
       <TaskList
+        sortMode={sortMode}
+        sortTasks={sortTasks}
         tasks={tasks}
         editTask={editTask}
         toggleCompleted={toggleCompleted}

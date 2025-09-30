@@ -1,7 +1,14 @@
-import { Calendar, Flag, Plus } from "lucide-react";
+import {
+  ArrowDownAZ,
+  ArrowDownZA,
+  Ban,
+  Calendar,
+  Flag,
+  Plus,
+} from "lucide-react";
 import { useState } from "react";
 
-const TaskInput = ({ addTask }) => {
+const TaskInput = ({ addTask, setSortMode }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState(null);
@@ -9,6 +16,9 @@ const TaskInput = ({ addTask }) => {
 
   const [showPriorityPopout, setShowPriorityPopout] = useState(false);
   const [showDatePopout, setShowDatePopout] = useState(false);
+  const [showSortPopout, setShowSortPopout] = useState(false);
+
+  const [sortIcon, setSortIcon] = useState(<Ban className="stroke-1 size-4" />);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -67,6 +77,8 @@ const TaskInput = ({ addTask }) => {
           </div>
         </form>
         <div className="flex gap-2 items-center">
+          {/* Add Task Button*/}
+
           <button
             onClick={handleSubmit}
             type="submit"
@@ -77,86 +89,145 @@ const TaskInput = ({ addTask }) => {
           </button>
         </div>
       </div>
-      <div className="flex gap-1">
-        <div className="flex gap-1 mr-1">
+      <div className="flex justify-between">
+        <div className="flex gap-1">
+          <div className="flex gap-1 mr-1">
+            {/* Date Button*/}
+
+            <button
+              onClick={() => setShowDatePopout(!showDatePopout)}
+              className="border text-sm border-neutral-400 w-fit h-fit p-1 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all"
+            >
+              <Calendar className="size-5 stroke-1" />
+              Date
+            </button>
+            {showDatePopout && (
+              <div className="flex gap-1">
+                <button
+                  onClick={() =>
+                    date === today() ? setDate("") : setDate(today())
+                  }
+                  className={`${
+                    date === today()
+                      ? "border-amber-400 bg-amber-100"
+                      : "border-neutral-400"
+                  } border text-sm w-fit h-fit p-1 px-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all`}
+                >
+                  Today
+                </button>
+                <input
+                  value={date}
+                  type="text"
+                  placeholder="dd-mm-yyyy"
+                  onChange={handleDateChange}
+                  className="border text-sm  w-24 outline-none h-fit p-1 px-2 gap-1 rounded flex hover:opacity-70 transition-all border-neutral-400"
+                />
+              </div>
+            )}
+          </div>
           <button
-            onClick={() => setShowDatePopout(!showDatePopout)}
+            onClick={() => setShowPriorityPopout(!showPriorityPopout)}
             className="border text-sm border-neutral-400 w-fit h-fit p-1 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all"
           >
-            <Calendar className="size-5 stroke-1" />
-            Date
+            <Flag className="size-5 stroke-1" />
+            Priority
           </button>
-          {showDatePopout && (
+          {showPriorityPopout && (
             <div className="flex gap-1">
+              {/* Priority Button*/}
+
               <button
                 onClick={() =>
-                  date === today() ? setDate("") : setDate(today())
+                  priority === 1 ? setPriority(null) : setPriority(1)
                 }
                 className={`${
-                  date === today()
+                  priority === 1
                     ? "border-amber-400 bg-amber-100"
                     : "border-neutral-400"
-                } border text-sm w-fit h-fit p-1 px-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all`}
+                } border text-sm  w-fit h-fit p-1 px-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all`}
               >
-                Today
+                1
               </button>
-              <input
-                value={date}
-                type="text"
-                placeholder="dd-mm-yyyy"
-                onChange={handleDateChange}
-                className="border text-sm  w-24 outline-none h-fit p-1 px-2 gap-1 rounded flex hover:opacity-70 transition-all border-neutral-400"
-              />
+              <button
+                onClick={() =>
+                  priority === 2 ? setPriority(null) : setPriority(2)
+                }
+                className={`${
+                  priority === 2
+                    ? "border-amber-400 bg-amber-100"
+                    : "border-neutral-400"
+                } border text-sm  w-fit h-fit p-1 px-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all`}
+              >
+                2
+              </button>
+              <button
+                onClick={() =>
+                  priority === 3 ? setPriority(null) : setPriority(3)
+                }
+                className={`${
+                  priority === 3
+                    ? "border-amber-400 bg-amber-100"
+                    : "border-neutral-400"
+                } border text-sm  w-fit h-fit p-1 px-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all`}
+              >
+                3
+              </button>
             </div>
           )}
         </div>
-        <button
-          onClick={() => setShowPriorityPopout(!showPriorityPopout)}
-          className="border text-sm border-neutral-400 w-fit h-fit p-1 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all"
-        >
-          <Flag className="size-5 stroke-1" />
-          Priority
-        </button>
-        {showPriorityPopout && (
-          <div className="flex gap-1">
-            <button
-              onClick={() =>
-                priority === 1 ? setPriority(null) : setPriority(1)
-              }
-              className={`${
-                priority === 1
-                  ? "border-amber-400 bg-amber-100"
-                  : "border-neutral-400"
-              } border text-sm  w-fit h-fit p-1 px-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all`}
-            >
-              1
-            </button>
-            <button
-              onClick={() =>
-                priority === 2 ? setPriority(null) : setPriority(2)
-              }
-              className={`${
-                priority === 2
-                  ? "border-amber-400 bg-amber-100"
-                  : "border-neutral-400"
-              } border text-sm  w-fit h-fit p-1 px-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all`}
-            >
-              2
-            </button>
-            <button
-              onClick={() =>
-                priority === 3 ? setPriority(null) : setPriority(3)
-              }
-              className={`${
-                priority === 3
-                  ? "border-amber-400 bg-amber-100"
-                  : "border-neutral-400"
-              } border text-sm  w-fit h-fit p-1 px-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all`}
-            >
-              3
-            </button>
+        {/* Sort Button*/}
+        <div className="relative flex gap-1">
+          <div className="border text-sm border-neutral-400 justify-center items-center aspect-square gap-1 rounded flex">
+            {sortIcon}
           </div>
-        )}
+          <button
+            onClick={() => setShowSortPopout(!showSortPopout)}
+            className="border text-sm border-neutral-400 w-fit h-fit p-1 px-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all"
+          >
+            Sort
+          </button>
+          {showSortPopout && (
+            <div
+              onMouseEnter={() => setShowSortPopout(true)}
+              onMouseLeave={() => setShowSortPopout(false)}
+              className="absolute z-10 md:-right-19 lg:-right-19 right-9.5 top-0 overflow-hidden border-neutral-400 bg-white border rounded"
+            >
+              <button
+                className="flex items-center gap-1 p-1 transition-all border-b-1 border-neutral-400 hover:bg-neutral-50 text-xs text-nowrap cursor-pointer"
+                onClick={() => {
+                  setShowSortPopout(!showSortPopout);
+                  setSortIcon(<Ban className="stroke-1 size-4" />);
+                  setSortMode("none");
+                }}
+              >
+                <Ban className="text-neutral-800 size-4 stroke-1" />
+                None
+              </button>
+              <button
+                className="flex items-center gap-1 p-1 w-full transition-all hover:bg-neutral-50 text-xs border-b-1 border-neutral-400 text-nowrap cursor-pointer"
+                onClick={() => {
+                  setShowSortPopout(!showSortPopout);
+                  setSortIcon(<ArrowDownAZ className="stroke-1 size-4" />);
+                  setSortMode("a-z");
+                }}
+              >
+                <ArrowDownAZ className="text-neutral-800 size-4 stroke-1" />
+                A-Z
+              </button>
+              <button
+                className="flex items-center gap-1 p-1 w-full transition-all hover:bg-neutral-50 text-xs  text-nowrap cursor-pointer"
+                onClick={() => {
+                  setShowSortPopout(!showSortPopout);
+                  setSortIcon(<ArrowDownZA className="stroke-1 size-4" />);
+                  setSortMode("z-a");
+                }}
+              >
+                <ArrowDownZA className="text-neutral-800 size-4 stroke-1" />
+                Z-A
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </>
   );

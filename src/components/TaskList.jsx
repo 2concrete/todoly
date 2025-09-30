@@ -1,9 +1,17 @@
 import Task from "./Task";
 
-const TaskList = ({ tasks, toggleCompleted, deleteTask, editTask }) => {
+const TaskList = ({
+  tasks,
+  toggleCompleted,
+  deleteTask,
+  editTask,
+  sortMode,
+  sortTasks,
+}) => {
+  const list = sortMode === "none" ? [...tasks] : sortTasks();
   return (
     <div className="flex flex-col-reverse mt-6 gap-1">
-      {tasks.map((task, index) => (
+      {list.map((task, index) => (
         <Task
           toggleCompleted={toggleCompleted}
           deleteTask={deleteTask}
