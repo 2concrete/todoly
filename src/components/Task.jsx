@@ -138,7 +138,7 @@ const Task = ({
         </button>
         {optionsHovered && (
           <div
-            className="absolute md:lg-right-19 right-7 border-neutral-400 bg-white border rounded"
+            className="absolute lg:-right-18 md:-right-18 right-7 border-neutral-400 bg-white border rounded"
             onMouseEnter={() => setOptionsHovered(true)}
             onMouseLeave={() => setOptionsHovered(false)}
           >
