@@ -15,7 +15,7 @@ const App = () => {
   const [sortMode, setSortMode] = useState("none");
 
   const sortTasks = () => {
-    if (sortMode === "none") {
+    if (sortMode === "new") {
       return tasks;
     } else if (sortMode === "a-z") {
       return [...tasks].sort((a, b) =>
@@ -25,6 +25,8 @@ const App = () => {
       return [...tasks].sort((a, b) =>
         a.name.toLowerCase().localeCompare(b.name.toLowerCase())
       );
+    } else if (sortMode === "old") {
+      return [...tasks].reverse();
     }
   };
 

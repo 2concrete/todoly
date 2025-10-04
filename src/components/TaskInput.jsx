@@ -3,6 +3,8 @@ import {
   ArrowDownZA,
   Ban,
   Calendar,
+  ClockArrowDown,
+  ClockArrowUp,
   Flag,
   Plus,
 } from "lucide-react";
@@ -18,7 +20,9 @@ const TaskInput = ({ addTask, setSortMode }) => {
   const [showDatePopout, setShowDatePopout] = useState(false);
   const [showSortPopout, setShowSortPopout] = useState(false);
 
-  const [sortIcon, setSortIcon] = useState(<Ban className="stroke-1 size-4" />);
+  const [sortIcon, setSortIcon] = useState(
+    <ClockArrowUp className="stroke-1 size-4" />
+  );
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -120,7 +124,7 @@ const TaskInput = ({ addTask, setSortMode }) => {
                   type="text"
                   placeholder="dd-mm-yyyy"
                   onChange={handleDateChange}
-                  className="border text-sm  w-24 outline-none h-fit p-1 px-2 gap-1 rounded flex hover:opacity-70 transition-all border-neutral-400"
+                  className="border text-sm w-24 outline-none h-fit p-1 px-2 gap-1 rounded flex hover:opacity-70 transition-all border-neutral-400"
                 />
               </div>
             )}
@@ -196,12 +200,23 @@ const TaskInput = ({ addTask, setSortMode }) => {
                 className="flex items-center gap-1 p-1 transition-all border-b-1 border-neutral-400 hover:bg-neutral-50 text-xs text-nowrap cursor-pointer"
                 onClick={() => {
                   setShowSortPopout(!showSortPopout);
-                  setSortIcon(<Ban className="stroke-1 size-4" />);
-                  setSortMode("none");
+                  setSortIcon(<ClockArrowUp className="stroke-1 size-4" />);
+                  setSortMode("new");
                 }}
               >
-                <Ban className="text-neutral-800 size-4 stroke-1" />
-                None
+                <ClockArrowUp className="text-neutral-800 size-4 stroke-1" />
+                New
+              </button>
+              <button
+                className="flex items-center gap-1 p-1 w-full transition-all border-b-1 border-neutral-400 hover:bg-neutral-50 text-xs  text-nowrap cursor-pointer"
+                onClick={() => {
+                  setShowSortPopout(!showSortPopout);
+                  setSortIcon(<ClockArrowDown className="stroke-1 size-4" />);
+                  setSortMode("old");
+                }}
+              >
+                <ClockArrowDown className="text-neutral-800 size-4 stroke-1" />
+                Old
               </button>
               <button
                 className="flex items-center gap-1 p-1 w-full transition-all hover:bg-neutral-50 text-xs border-b-1 border-neutral-400 text-nowrap cursor-pointer"
