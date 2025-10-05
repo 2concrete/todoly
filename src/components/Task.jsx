@@ -120,7 +120,7 @@ const Task = ({
                 editTask(date, newName, newDescription);
                 setEditing(false);
               }}
-              className="border text-xs w-fit h-fit p-1 cursor-pointer gap-1 rounded fl2ex hover:opacity-70 transition-all border-green-500"
+              className="border text-xs w-fit h-fit p-1 cursor-pointer gap-1 rounded flex hover:opacity-70 transition-all border-green-500"
             >
               <Check size={15} />
             </button>
