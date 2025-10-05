@@ -38,13 +38,10 @@ const TaskInput = ({ addTask, setSortMode }) => {
 
   const today = () => {
     const newDate = new Date();
-    const dateString =
-      newDate.getDate() +
-      "-" +
-      newDate.getMonth() +
-      "-" +
-      newDate.getFullYear();
-    return dateString;
+    const day = newDate.getDate();
+    const month = newDate.getMonth + 1;
+    const year = newDate.getFullYear;
+    return `${day}-${month}-${year}`;
   };
 
   const handleSubmit = (e) => {

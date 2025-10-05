@@ -39,14 +39,23 @@ const Task = ({
 
   const today = () => {
     const newDate = new Date();
-    const dateString =
-      newDate.getDate() +
-      "-" +
-      newDate.getMonth() +
-      "-" +
-      newDate.getFullYear();
-    return dateString;
+    const day = newDate.getDate();
+    const month = newDate.getMonth + 1;
+    const year = newDate.getFullYear;
+    return `${day}-${month}-${year}`;
   };
+
+  const formatDeadline = () => {
+    const [day, month, year] = deadline.split("-");
+    const date = new Date(`${year}-${month}-${day}`);
+    const formatted = date.toLocaleDateString("en-AU", {
+      day: "numeric",
+      month: "short",
+    });
+
+    return formatted;
+  };
+
   return (
     <div className="flex justify-between relative">
       <div className="flex gap-2">
@@ -130,7 +139,7 @@ const Task = ({
               deadline === today() ? "border-green-500" : "border-neutral-400"
             } border text-xs w-fit h-fit p-1 px-2 gap-1 rounded flex hover:opacity-70 transition-all`}
           >
-            {deadline === today() ? "Today" : deadline}
+            {deadline === today() ? "Today" : formatDeadline()}
           </div>
         )}
         <button className="" onClick={() => setOptionsHovered(!optionsHovered)}>
