@@ -203,20 +203,17 @@ const TaskInput = ({
         </div>
         {/* Sort Button*/}
         <div className="relative flex gap-1">
-          <div className="border text-sm border-neutral-400 justify-center items-center aspect-square gap-1 rounded flex">
-            {sortIcon}
-          </div>
           <button
             onClick={() => setShowSortPopout(!showSortPopout)}
-            className="border text-sm border-neutral-400 w-fit h-fit p-1 px-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all"
+            className="border text-sm cursor-pointer hover:opacity-70 transition-all border-neutral-400 justify-center items-center aspect-square gap-1 rounded flex"
           >
-            Sort
+            {sortIcon}
           </button>
           {showSortPopout && (
             <div
               onMouseEnter={() => setShowSortPopout(true)}
               onMouseLeave={() => setShowSortPopout(false)}
-              className="absolute z-10 md:-right-19 lg:-right-19 right-9.5 top-0 overflow-hidden border-neutral-400 bg-white border rounded"
+              className="absolute z-10 md:-right-17.5 lg:-right-17.5 right-5.5 top-0 overflow-hidden border-neutral-400 bg-white border rounded"
             >
               <button
                 className="flex items-center gap-1 p-1 transition-all border-b-1 border-neutral-400 hover:bg-neutral-50 text-xs text-nowrap cursor-pointer"
