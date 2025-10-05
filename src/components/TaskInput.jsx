@@ -3,6 +3,8 @@ import {
   ArrowDownZA,
   Ban,
   Calendar,
+  Circle,
+  CircleCheck,
   ClockArrowDown,
   ClockArrowUp,
   Flag,
@@ -10,7 +12,12 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 
-const TaskInput = ({ addTask, setSortMode }) => {
+const TaskInput = ({
+  addTask,
+  setSortMode,
+  showCompleted,
+  setShowCompleted,
+}) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState(null);
@@ -175,6 +182,24 @@ const TaskInput = ({ addTask, setSortMode }) => {
               </button>
             </div>
           )}
+          <button
+            onClick={() =>
+              setShowCompleted(() => {
+                if (showCompleted === "all") return "completed";
+                if (showCompleted === "completed") return "incomplete";
+                if (showCompleted === "incomplete") return "all";
+              })
+            }
+            className="border text-sm border-neutral-400 w-fit h-full items-center aspect-square justify-center p-1 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all"
+          >
+            {showCompleted === "all" && <Circle className="stroke-1 size-5" />}
+            {showCompleted === "completed" && (
+              <CircleCheck className="stroke-1 size-5" />
+            )}
+            {showCompleted === "incomplete" && (
+              <Ban className="stroke-1 size-5" />
+            )}
+          </button>
         </div>
         {/* Sort Button*/}
         <div className="relative flex gap-1">

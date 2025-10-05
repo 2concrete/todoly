@@ -62,18 +62,18 @@ const Task = ({
         <button
           className="self-start"
           onClick={() => toggleCompleted(date)}
-          onMouseEnter={() => setCircleHovered(!circleHovered)}
-          onMouseLeave={() => setCircleHovered(!circleHovered)}
+          onMouseEnter={() => setCircleHovered(true)}
+          onMouseLeave={() => setCircleHovered(false)}
         >
-          {circleHovered ? (
+          {circleHovered || completed ? (
             <CircleCheck
-              className={`stroke-1 size-5 ${
+              className={`stroke-1 size-5 cursor-pointer ${
                 completed ? "text-green-500" : "text-neutral-600"
               }`}
             />
           ) : (
             <Circle
-              className={`stroke-1 size-5 ${
+              className={`stroke-1 size-5 cursor-pointer ${
                 completed ? "text-green-500" : "text-neutral-600"
               }`}
             />

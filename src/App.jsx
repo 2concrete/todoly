@@ -13,6 +13,7 @@ const App = () => {
   });
 
   const [sortMode, setSortMode] = useState("none");
+  const [showCompleted, setShowCompleted] = useState("all");
 
   const sortTasks = () => {
     if (sortMode === "new") {
@@ -123,7 +124,12 @@ const App = () => {
 
   return (
     <div className="flex flex-col mt-10 mx-auto font-[Rubik] lg:w-1/2 md:w-3/4 sm:w-4/5 w-11/12">
-      <TaskInput addTask={addTask} setSortMode={setSortMode} />
+      <TaskInput
+        addTask={addTask}
+        setSortMode={setSortMode}
+        showCompleted={showCompleted}
+        setShowCompleted={setShowCompleted}
+      />
       <TaskList
         sortMode={sortMode}
         sortTasks={sortTasks}
@@ -131,6 +137,7 @@ const App = () => {
         editTask={editTask}
         toggleCompleted={toggleCompleted}
         deleteTask={deleteTask}
+        showCompleted={showCompleted}
       />
       <button
         className="absolute bottom-0 m-1 text-sm left-0 border-1 border-neutral-400 rounded transition-all px-1 hover:opacity-70 cursor-pointer"
