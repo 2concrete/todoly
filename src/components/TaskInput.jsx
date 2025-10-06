@@ -82,7 +82,7 @@ const TaskInput = ({
               value={description}
               onChange={handleDescriptionChange}
               placeholder="Enter Description..."
-              className="outline-none text-xs resize-none"
+              className="outline-none text-xs resize-none mb-2"
             />
           </div>
         </form>
@@ -99,114 +99,118 @@ const TaskInput = ({
           </button>
         </div>
       </div>
-      <div className="flex gap-1">
-        <div /* Date Button*/>
-          <button
-            onClick={() => setShowDatePopout(!showDatePopout)}
-            className="border text-sm border-neutral-400 w-fit h-fit p-1 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all"
-          >
-            <Calendar className="size-5 stroke-1" />
-            Date
-          </button>
-          {showDatePopout && (
-            <div className="flex gap-1">
-              <button
-                onClick={() =>
-                  date === today() ? setDate("") : setDate(today())
-                }
-                className={`${
-                  date === today()
-                    ? "border-amber-400 bg-amber-100"
-                    : "border-neutral-400"
-                } border text-sm w-fit h-fit p-1 px-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all`}
-              >
-                Today
-              </button>
-              <input
-                value={date}
-                type="text"
-                placeholder="dd-mm-yyyy"
-                onChange={handleDateChange}
-                className="border text-sm w-24 outline-none h-fit p-1 px-2 gap-1 rounded flex hover:opacity-70 transition-all border-neutral-400"
-              />
-            </div>
-          )}
-        </div>
-        <div /* Priority Button*/>
-          <button
-            onClick={() => setShowPriorityPopout(!showPriorityPopout)}
-            className="border text-sm border-neutral-400 w-fit h-fit p-1 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all"
-          >
-            <Flag className="size-5 stroke-1" />
-            Priority
-          </button>
-          {showPriorityPopout && (
-            <div className="flex gap-1">
-              {/* Priority Button*/}
+      <div className="flex gap-1 justify-between">
+        <div className="flex gap-1">
+          <div /* Date Button*/>
+            <button
+              onClick={() => setShowDatePopout(!showDatePopout)}
+              className="border text-sm border-neutral-400 w-fit h-fit p-1 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all"
+            >
+              <Calendar className="size-5 stroke-1" />
+              Date
+            </button>
+            {showDatePopout && (
+              <div className="flex gap-1">
+                <button
+                  onClick={() =>
+                    date === today() ? setDate("") : setDate(today())
+                  }
+                  className={`${
+                    date === today()
+                      ? "border-amber-400 bg-amber-100"
+                      : "border-neutral-400"
+                  } border text-sm w-fit h-fit p-1 px-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all`}
+                >
+                  Today
+                </button>
+                <input
+                  value={date}
+                  type="text"
+                  placeholder="dd-mm-yyyy"
+                  onChange={handleDateChange}
+                  className="border text-sm w-full outline-none h-fit p-1 px-2 gap-1 rounded flex hover:opacity-70 transition-all border-neutral-400"
+                />
+              </div>
+            )}
+          </div>
+          <div /* Priority Button*/>
+            <button
+              onClick={() => setShowPriorityPopout(!showPriorityPopout)}
+              className="border text-sm border-neutral-400 w-fit h-fit p-1 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all"
+            >
+              <Flag className="size-5 stroke-1" />
+              Priority
+            </button>
+            {showPriorityPopout && (
+              <div className="flex gap-1">
+                {/* Priority Button*/}
 
-              <button
-                onClick={() =>
-                  priority === 1 ? setPriority(null) : setPriority(1)
-                }
-                className={`${
-                  priority === 1
-                    ? "border-amber-400 bg-amber-100"
-                    : "border-neutral-400"
-                } border text-sm  w-fit h-fit p-1 px-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all`}
-              >
-                1
-              </button>
-              <button
-                onClick={() =>
-                  priority === 2 ? setPriority(null) : setPriority(2)
-                }
-                className={`${
-                  priority === 2
-                    ? "border-amber-400 bg-amber-100"
-                    : "border-neutral-400"
-                } border text-sm  w-fit h-fit p-1 px-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all`}
-              >
-                2
-              </button>
-              <button
-                onClick={() =>
-                  priority === 3 ? setPriority(null) : setPriority(3)
-                }
-                className={`${
-                  priority === 3
-                    ? "border-amber-400 bg-amber-100"
-                    : "border-neutral-400"
-                } border text-sm  w-fit h-fit p-1 px-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all`}
-              >
-                3
-              </button>
-            </div>
-          )}
-        </div>
-        <div /* Complete/Incomplete Button*/>
-          <button
-            onClick={() =>
-              setShowCompleted(() => {
-                if (showCompleted === "all") return "completed";
-                if (showCompleted === "completed") return "incomplete";
-                if (showCompleted === "incomplete") return "all";
-              })
-            }
-            className="border text-sm border-neutral-400 w-fit h-full items-center aspect-square justify-center p-1 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all"
-          >
-            {showCompleted === "all" && <Circle className="stroke-1 size-5" />}
-            {showCompleted === "completed" && (
-              <CircleCheck className="stroke-1 size-5" />
+                <button
+                  onClick={() =>
+                    priority === 1 ? setPriority(null) : setPriority(1)
+                  }
+                  className={`${
+                    priority === 1
+                      ? "border-amber-400 bg-amber-100"
+                      : "border-neutral-400"
+                  } border text-sm  w-fit h-fit p-1 px-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all`}
+                >
+                  1
+                </button>
+                <button
+                  onClick={() =>
+                    priority === 2 ? setPriority(null) : setPriority(2)
+                  }
+                  className={`${
+                    priority === 2
+                      ? "border-amber-400 bg-amber-100"
+                      : "border-neutral-400"
+                  } border text-sm  w-fit h-fit p-1 px-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all`}
+                >
+                  2
+                </button>
+                <button
+                  onClick={() =>
+                    priority === 3 ? setPriority(null) : setPriority(3)
+                  }
+                  className={`${
+                    priority === 3
+                      ? "border-amber-400 bg-amber-100"
+                      : "border-neutral-400"
+                  } border text-sm  w-fit h-fit p-1 px-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all`}
+                >
+                  3
+                </button>
+              </div>
             )}
-            {showCompleted === "incomplete" && (
-              <Ban className="stroke-1 size-5" />
-            )}
-          </button>
+          </div>
+          <div /* Complete/Incomplete Button*/>
+            <button
+              onClick={() =>
+                setShowCompleted(() => {
+                  if (showCompleted === "all") return "completed";
+                  if (showCompleted === "completed") return "incomplete";
+                  if (showCompleted === "incomplete") return "all";
+                })
+              }
+              className="border text-sm border-neutral-400 w-fit h-full items-center aspect-square justify-center p-1 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all"
+            >
+              {showCompleted === "all" && (
+                <Circle className="stroke-1 size-5" />
+              )}
+              {showCompleted === "completed" && (
+                <CircleCheck className="stroke-1 size-5" />
+              )}
+              {showCompleted === "incomplete" && (
+                <Ban className="stroke-1 size-5" />
+              )}
+            </button>
+          </div>
         </div>
         <div /* Sort Button*/ className="relative flex gap-1">
           <button
             onClick={() => setShowSortPopout(!showSortPopout)}
-            className="border text-sm cursor-pointer hover:opacity-70 transition-all border-neutral-400 justify-center items-center aspect-square gap-1 rounded flex"
+            className="border text-sm cursor-pointer mr-3 hover:opacity-70 transition-all border-neutral-400 justify-center items-center aspect-square rounded flex"
           >
             {sortIcon}
           </button>

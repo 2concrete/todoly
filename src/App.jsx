@@ -140,7 +140,7 @@ const App = () => {
         showCompleted={showCompleted}
       />
       <button
-        className="absolute bottom-0 m-1 text-sm left-0 border-1 border-neutral-400 rounded transition-all px-1 hover:opacity-70 cursor-pointer"
+        className="absolute bottom-0 m-1 text-xs left-0 border-1 border-neutral-400 rounded transition-all p-1 px-2 hover:opacity-70 cursor-pointer"
         onClick={() => sampleTasks()}
       >
         dev
