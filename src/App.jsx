@@ -112,11 +112,16 @@ const App = () => {
     setTasks(tasks.filter((task) => task.date !== date));
   };
 
-  const editTask = (date, name, description) => {
+  const editTask = (date, name, description, priority) => {
     setTasks(
       tasks.map((task) =>
         task.date === date
-          ? { ...task, name: name, description: description }
+          ? {
+              ...task,
+              name: name,
+              description: description,
+              priority: priority,
+            }
           : task
       )
     );
