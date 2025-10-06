@@ -66,7 +66,9 @@ const TaskInput = ({
 
   return (
     <>
-      <div className="flex justify-between items-start">
+      <div
+        /* Title and Description Inputs*/ className="flex justify-between items-start"
+      >
         <form onSubmit={handleSubmit}>
           <div className="flex flex-col gap-1">
             <input
@@ -97,42 +99,40 @@ const TaskInput = ({
           </button>
         </div>
       </div>
-      <div className="flex justify-between">
-        <div className="flex gap-1">
-          <div className="flex gap-1 mr-1">
-            {/* Date Button*/}
-
-            <button
-              onClick={() => setShowDatePopout(!showDatePopout)}
-              className="border text-sm border-neutral-400 w-fit h-fit p-1 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all"
-            >
-              <Calendar className="size-5 stroke-1" />
-              Date
-            </button>
-            {showDatePopout && (
-              <div className="flex gap-1">
-                <button
-                  onClick={() =>
-                    date === today() ? setDate("") : setDate(today())
-                  }
-                  className={`${
-                    date === today()
-                      ? "border-amber-400 bg-amber-100"
-                      : "border-neutral-400"
-                  } border text-sm w-fit h-fit p-1 px-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all`}
-                >
-                  Today
-                </button>
-                <input
-                  value={date}
-                  type="text"
-                  placeholder="dd-mm-yyyy"
-                  onChange={handleDateChange}
-                  className="border text-sm w-24 outline-none h-fit p-1 px-2 gap-1 rounded flex hover:opacity-70 transition-all border-neutral-400"
-                />
-              </div>
-            )}
-          </div>
+      <div className="flex gap-1">
+        <div /* Date Button*/>
+          <button
+            onClick={() => setShowDatePopout(!showDatePopout)}
+            className="border text-sm border-neutral-400 w-fit h-fit p-1 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all"
+          >
+            <Calendar className="size-5 stroke-1" />
+            Date
+          </button>
+          {showDatePopout && (
+            <div className="flex gap-1">
+              <button
+                onClick={() =>
+                  date === today() ? setDate("") : setDate(today())
+                }
+                className={`${
+                  date === today()
+                    ? "border-amber-400 bg-amber-100"
+                    : "border-neutral-400"
+                } border text-sm w-fit h-fit p-1 px-2 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all`}
+              >
+                Today
+              </button>
+              <input
+                value={date}
+                type="text"
+                placeholder="dd-mm-yyyy"
+                onChange={handleDateChange}
+                className="border text-sm w-24 outline-none h-fit p-1 px-2 gap-1 rounded flex hover:opacity-70 transition-all border-neutral-400"
+              />
+            </div>
+          )}
+        </div>
+        <div /* Priority Button*/>
           <button
             onClick={() => setShowPriorityPopout(!showPriorityPopout)}
             className="border text-sm border-neutral-400 w-fit h-fit p-1 gap-1 rounded flex cursor-pointer hover:opacity-70 transition-all"
@@ -182,6 +182,8 @@ const TaskInput = ({
               </button>
             </div>
           )}
+        </div>
+        <div /* Complete/Incomplete Button*/>
           <button
             onClick={() =>
               setShowCompleted(() => {
@@ -201,8 +203,7 @@ const TaskInput = ({
             )}
           </button>
         </div>
-        {/* Sort Button*/}
-        <div className="relative flex gap-1">
+        <div /* Sort Button*/ className="relative flex gap-1">
           <button
             onClick={() => setShowSortPopout(!showSortPopout)}
             className="border text-sm cursor-pointer hover:opacity-70 transition-all border-neutral-400 justify-center items-center aspect-square gap-1 rounded flex"
